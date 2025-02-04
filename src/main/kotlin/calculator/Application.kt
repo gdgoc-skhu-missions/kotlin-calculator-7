@@ -1,6 +1,7 @@
 package calculator
 
 import kotlin.text.toRegex
+import calculator.defineInt
 
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
@@ -10,24 +11,39 @@ fun main() {
         zeroReturn()
     }
 
-    var numList = mutableListOf<Int>().
+    var numList = mutableListOf<Int>()
     var isCoustom = identifySign(num)
     if(isCoustom){
         val sign = extractSign(num)
         var splitList = customSplit(num, sign)
         var intList = stringToInt(splitList)
-        numList.add(defineInt(intList))
+        
+        numList.addAll(defineInt(intList))
         
     }
     else{
        var splitList = basicSplit(num)
        var intList = stringToInt(splitList)
-       numList.add(stringToInt(splitList)) 
+       numList.addAll(defineInt(intList))
     }
     val  result =  sum(numList)
 
     print("결과값은 : ${result}")
 }
+
+// 예외처리 부분 
+fun inputNotPositive() {
+    throw IllegalArgumentException("입력값이 양수가 아닙니다. ")
+}
+
+fun incorrectSign(){
+        throw IllegalArgumentException("구분자와 양수가 아닌 문자가 입력되었습니다.")
+}
+
+fun undefineSign(){
+        throw IllegalArgumentException("//와\n사이에 커스텀 구분자를 정의하지 않았습니다.")
+}
+
 
 fun zeroReturn():Int{
     return 0;
@@ -52,7 +68,7 @@ fun customSplit(a : String, sign : Char) : List<String>{
 
 // fun extractSign(a : String) : Char {
 
-fun extractSign(a : String) :  { 
+fun extractSign(a : String) : { 
     if(a.slice(3..5).equals("\n"))  {
         return undefineSign()
     } 
@@ -71,13 +87,14 @@ fun stringToInt(a : List<String>) : List<Int> {
     }
     return numList
 }
-fun defineInt(a:List<Int>){
+fun defineInt(a:List<Int>):List<Int>{ 
     for(i in a){
-        if(i <= 0 ){
-        return inputnotPositive()
-        }
-    }
+        if(i <= 0 ){   inputNotPositive()
+        }       
 }
+return a
+}
+
 fun sum(a : List<Int>) : Int {
     var result = 0
     for(i in a) {
@@ -85,17 +102,4 @@ fun sum(a : List<Int>) : Int {
     }
     return result
 }
-
-// 예외처리 부분 
-fun inputnotPositive():{
-    throw IllegalArgumentException("입력값이 양수가 아닙니다. ")
-}
-
-fun incorrectSign(){
-        throw IllegalArgumentException("구분자와 양수가 아닌 문자가 입력되었습니다.")
-}
-fun undefineSign(){
-        throw IllegalArgumentException(" //와\n사이에 커스텀 구분자를 정의하지 않았습니다.")
-}
-
   
