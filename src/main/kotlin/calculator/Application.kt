@@ -1,5 +1,7 @@
 package calculator
 
+import kotlin.text.toRegex
+
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
     var num = readLine().toString()
@@ -7,6 +9,7 @@ fun main() {
     if(num == " " || num == ""){
         zeroReturn()
     }
+
 }
 
 fun zeroReturn():Int{
@@ -30,8 +33,8 @@ fun customSplit(a : String, sign : Char) : List<String>{
     return b.split(sign)
 }
 
-fun extractSign(a : String) : String {
-    val sign = a.slice(2..3)
+fun extractSign(a : String) : Char {
+    val sign = a.slice(2..3).first()
     return sign
 }
 
