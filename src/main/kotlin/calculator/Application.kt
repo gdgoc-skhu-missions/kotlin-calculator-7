@@ -9,7 +9,22 @@ fun main() {
     if(num == " " || num == ""){
         zeroReturn()
     }
+    
+    var numList = mutableListOf<Int>().
+    var isCoustom = identifySign(num)
+    if(isCoustom){
+        val sign = extractSign(num)
+        var splitList = customSplit(num, sign)
+        numList.add(stringToInt(splitList))
+        
+    }
+    else{
+       var a = basicSplit(num)
+       numList.add(stringToInt(a)) 
+    }
+    val  result =  sum(numList)
 
+    print("결과값은 : ${result}")
 }
 
 fun zeroReturn():Int{
@@ -37,7 +52,6 @@ fun extractSign(a : String) : Char {
     val sign = a.slice(2..3).first()
     return sign
 }
-
 
 fun stringToInt(a : List<String>) : List<Int> {
     var numList = mutableListOf<Int>()
