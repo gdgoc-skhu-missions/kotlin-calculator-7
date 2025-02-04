@@ -13,8 +13,8 @@ fun basicSplit(a : String) : List<String>{
 }
 
 fun customSplit(a : String, sign : Char) : List<String>{
-    var b = a.slice(5..a.length)
-    return a.split(sign)
+    val b = a.slice(5..a.length)
+    return b.split(sign)
 }
 
 fun zeroReturn():Int{
@@ -22,8 +22,11 @@ fun zeroReturn():Int{
 }
 
 fun identifySign(a : String) : Boolean {
-    if(a.first=="/")
-     return true
+    val slash = a.first()
+    if(slash.equals("/")){
+    return true
+    }
+    return false
 }
 
 fun sum(a : List<Int>) : Int {
