@@ -34,6 +34,16 @@ fun extractSign(a : String) : String {
     return sign
 }
 
+
+fun stringToInt(a : List<String>) : List<Int> {
+    var numList = mutableListOf<Int>()
+    for(i in a) {
+        var k = i.toInt()
+        numList.add(k)
+    }
+    return numList
+}
+
 fun sum(a : List<Int>) : Int {
     var result = 0
     for(i in a) {
