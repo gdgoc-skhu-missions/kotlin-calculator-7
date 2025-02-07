@@ -1,15 +1,17 @@
 package calculator
 
+const val ZERO :Int= 0
 
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
     var num = readLine()!!
 
 // 0 일때 처리
-    if (num == " " || num == "") {
-        getResult(zeroReturn())
+    if (num.isBlank()) {
+     getResult(ZERO)
         return
     }
+
 // 숫자 리스트 변수 선언
     var numList = mutableListOf<Int>()
     // 커스텀 된 숫자 (커스텀 문자가 들어있는지 확인하기 위한 변수 선언)
@@ -29,8 +31,7 @@ fun main() {
         numList.addAll(defineInt(intList))
     }
     val result = sum(numList)
-
-    print("결과값은 : ${result}")
+    
 }
 
 // 예외처리 부분
@@ -46,10 +47,7 @@ fun undefineSign() {
     throw IllegalArgumentException("//와\n사이에 커스텀 구분자를 정의하지 않았습니다.")
 }
 
-// 0을 리턴하는 함수
-fun zeroReturn(): Int {
-    return 0;
-}
+
 // 커스텀 구분자가 있는지 확인하는 함수
 fun identifySign(a: String): Boolean {
     val slash = a.first()
