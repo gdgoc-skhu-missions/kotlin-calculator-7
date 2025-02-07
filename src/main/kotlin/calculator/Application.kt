@@ -68,7 +68,7 @@ fun customSplit(a: String, sign: Char): List<String> {
     return b.split(sign)
 }
 
-
+// 추출하는 함수
 fun extractSign(a: String): Char {
     if (a.slice(3..5).equals("\n")) {
         undefineSign()
@@ -109,6 +109,6 @@ fun sum(a: List<Int>): Int {
 fun getResult(
     result: Int
 ) {
-    print("결과값은 : ${result} 입니다.")
+    print("결과 : ${result}")
 
 }
