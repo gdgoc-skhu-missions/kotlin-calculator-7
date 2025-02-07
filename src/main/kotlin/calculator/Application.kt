@@ -7,7 +7,7 @@ const val Zero = 0
 
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
-    var num = readLine().toString()
+    var num = readLine()
 
 
     if (num.isNullOrBlank()) {
