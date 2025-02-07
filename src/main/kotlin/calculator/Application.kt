@@ -3,13 +3,15 @@ package calculator
 import kotlin.text.toRegex
 import calculator.defineInt
 
+const val Zero = 0
+
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
     var num = readLine().toString()
 
 
-    if(num == " " || num == ""){
-        getResult(zeroReturn())
+    if(num.isNullOrBlank()){
+        getResult(Zero)
         return
     }
 
@@ -46,11 +48,6 @@ fun incorrectSign(){
 
 fun undefineSign(){
     throw IllegalArgumentException("//와\n사이에 커스텀 구분자를 정의하지 않았습니다.")
-}
-
-
-fun zeroReturn():Int{
-    return 0;
 }
 
 fun identifySign(a : String) : Boolean {
