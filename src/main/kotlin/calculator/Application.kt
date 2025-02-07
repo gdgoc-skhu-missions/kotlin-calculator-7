@@ -15,6 +15,7 @@ fun main() {
 
     var numList = mutableListOf<Int>()
     var isCoustom = identifySign(num)
+    print(isCoustom)
     if(isCoustom){
         val sign = extractSign(num)
         print(num.slice(5..<num.length))
@@ -54,7 +55,7 @@ fun zeroReturn():Int{
 
 fun identifySign(a : String) : Boolean {
     val slash = a.first()
-    if(slash.equals("/")){
+    if(slash.equals('/')){
         return true
     }
     return false
@@ -104,6 +105,7 @@ fun sum(a : List<Int>) : Int {
     }
     return result
 }
+
 fun getResult(result :Int) {
     print("결과값은 : ${result} 입니다.")
 }
