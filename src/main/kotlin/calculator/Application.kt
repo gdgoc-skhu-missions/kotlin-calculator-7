@@ -15,8 +15,8 @@ fun main() {
     }
 
     var numList = mutableListOf<Int>()
-    var isCoustom = identifySign(num)
-    if (isCoustom) {
+    var isCustom = identifySign(num)
+    if (isCustom) {
         val sign = extractSign(num)
         var splitList = customSplit(num, sign)
         var intList = stringToInt(splitList)
@@ -30,7 +30,7 @@ fun main() {
     }
     val result = sum(numList)
 
-    print("결과: ${result}")
+    getResult(result)
 }
 
 // 예외처리 부분 
