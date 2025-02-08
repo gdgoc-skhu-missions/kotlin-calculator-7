@@ -9,7 +9,6 @@ fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
     var num = readLine()
 
-
     if (num.isNullOrBlank()) {
         getResult(ZERO)
         return
@@ -17,7 +16,6 @@ fun main() {
 
     var numList = mutableListOf<Int>()
     var isCoustom = identifySign(num)
-    print(isCoustom)
     if (isCoustom) {
         val sign = extractSign(num)
         print(num.slice(5..<num.length))
@@ -33,7 +31,7 @@ fun main() {
     }
     val result = sum(numList)
 
-    print("결과값은 : ${result}")
+    print("결과: ${result}")
 }
 
 // 예외처리 부분 
@@ -51,10 +49,7 @@ fun undefineSign() {
 
 fun identifySign(a: String): Boolean {
     val slash = a.first()
-    if (slash.equals('/')) {
-        return true
-    }
-    return false
+    return slash == '/'
 }
 
 fun basicSplit(a: String): List<String> {
@@ -96,15 +91,9 @@ fun defineInt(a: List<Int>): List<Int> {
     return a
 }
 
-fun sum(a: List<Int>): Int {
-    var result = 0
-    for (i in a) {
-        result += i
-    }
-    return result
-}
+fun sum(a: List<Int>): Int = a.sum()
 
 fun getResult(result: Int) {
-    print("결과값은 : ${result} 입니다.")
+    print("결과 : ${result}")
 }
   
