@@ -35,7 +35,7 @@ fun main() {
 
 // 예외처리 부분 
 fun inputNotPositive() {
-    throw IllegalArgumentException("입력값이 양수가 아닙니다. ")
+    throw IllegalArgumentException("입력값이 양수가 아닙니다.")
 }
 
 fun incorrectSign() {
@@ -56,10 +56,9 @@ fun basicSplit(a: String): List<String> {
 }
 
 fun customSplit(a: String, sign: Char): List<String> {
-    val b = a.slice(5..a.length-1)
+    val b = a.slice(5..a.length - 1)
     return b.split(sign)
 }
-
 
 fun extractSign(a: String): Char {
     if (a.slice(3..5).equals("\n")) {
@@ -75,8 +74,12 @@ fun extractSign(a: String): Char {
 fun stringToInt(a: List<String>): List<Int> {
     var numList = mutableListOf<Int>()
     for (i in a) {
-        var k = i.toInt()
-        numList.add(k)
+        try {
+            var k = i.toInt()
+            numList.add(k)
+        } catch (e: NumberFormatException) {
+            incorrectSign()
+        }
     }
     return numList
 }
