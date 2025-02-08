@@ -34,26 +34,15 @@ fun main() {
 }
 
 // 예외처리 부분 
-fun inputNotPositive() {
-    throw IllegalArgumentException("입력값이 양수가 아닙니다.")
-}
+fun inputNotPositive(): IllegalArgumentException = throw IllegalArgumentException("입력값이 양수가 아닙니다.")
 
-fun incorrectSign() {
-    throw IllegalArgumentException("구분자와 양수가 아닌 문자가 입력되었습니다.")
-}
+fun incorrectSign(): Nothing = throw IllegalArgumentException("구분자와 양수가 아닌 문자가 입력되었습니다.")
 
-fun undefineSign() {
-    throw IllegalArgumentException("커스텀 구분자를 잘못 정의하였습니다")
-}
+fun defineSignError(): IllegalArgumentException = throw IllegalArgumentException("커스텀 구분자를 잘못 정의하였습니다")
 
-fun identifySign(a: String): Boolean {
-    val slash = a.first()
-    return slash == '/'
-}
+fun identifySign(a: String): Boolean = a.first() == '/'
 
-fun basicSplit(a: String): List<String> {
-    return a.split(',', ':')
-}
+fun basicSplit(a: String): List<String> = a.split(',', ':')
 
 fun customSplit(a: String, sign: Char): List<String> {
     val b = a.slice(5..a.length - 1)
@@ -63,7 +52,7 @@ fun customSplit(a: String, sign: Char): List<String> {
 fun extractSign(a: String): Char {
     val regex = Regex("^//[0-9\\s]\\\\n.*")
     if (regex.matches(a)) {
-        undefineSign()
+        defineSignError()
     }
     val sign = a.slice(2..3).first()
     return sign
@@ -93,7 +82,5 @@ fun defineInt(a: List<Int>): List<Int> {
 
 fun sum(a: List<Int>): Int = a.sum()
 
-fun getResult(result: Int) {
-    print("결과 : ${result}")
-}
+fun getResult(result: Int) = print("결과 : ${result}")
   
