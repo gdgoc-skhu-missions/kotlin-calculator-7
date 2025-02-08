@@ -3,7 +3,7 @@ package calculator
 import kotlin.text.toRegex
 import calculator.defineInt
 
-const val Zero = 0
+const val ZERO = 0
 
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
@@ -11,7 +11,7 @@ fun main() {
 
 
     if (num.isNullOrBlank()) {
-        getResult(Zero)
+        getResult(ZERO)
         return
     }
 
