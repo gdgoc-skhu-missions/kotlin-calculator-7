@@ -18,8 +18,7 @@ fun main() {
     var isCoustom = identifySign(num)
     if (isCoustom) {
         val sign = extractSign(num)
-        print(num.slice(5..<num.length))
-        var splitList = customSplit(num.slice(5..num.length), sign)
+        var splitList = customSplit(num, sign)
         var intList = stringToInt(splitList)
 
         numList.addAll(defineInt(intList))
@@ -57,7 +56,7 @@ fun basicSplit(a: String): List<String> {
 }
 
 fun customSplit(a: String, sign: Char): List<String> {
-    val b = a.slice(5..a.length)
+    val b = a.slice(5..a.length-1)
     return b.split(sign)
 }
 
