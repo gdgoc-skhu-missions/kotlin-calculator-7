@@ -43,7 +43,7 @@ fun incorrectSign() {
 }
 
 fun undefineSign() {
-    throw IllegalArgumentException("//와\n사이에 커스텀 구분자를 정의하지 않았습니다.")
+    throw IllegalArgumentException("커스텀 구분자를 잘못 정의하였습니다")
 }
 
 fun identifySign(a: String): Boolean {
@@ -61,13 +61,11 @@ fun customSplit(a: String, sign: Char): List<String> {
 }
 
 fun extractSign(a: String): Char {
-    if (a.slice(3..5).equals("\n")) {
+    val regex = Regex("^//[0-9\\s]\\\\n.*")
+    if (regex.matches(a)) {
         undefineSign()
     }
     val sign = a.slice(2..3).first()
-    if (sign.equals(' ')) {
-        undefineSign()
-    }
     return sign
 }
 
