@@ -14,8 +14,9 @@ fun main() {
 
 
     var numList = mutableListOf<Int>()
-
-    val result = getCustomSign(num)
+    val result = if (num.startsWith("//")) {
+        getCustomSign(num)
+    } else null
 
     if (result.isNullOrBlank()) {
         val splitList = basicSplit(num)
@@ -24,19 +25,18 @@ fun main() {
 
     }
 
-    if (result!!.isNotBlank()) {
+   else {
         if (!num.contains("\\n")) {
             incorrectSign()
         }
-
         print(result) // result = d
-        val splitList = customSplit(num, result) // 여기서 오류가 나네
+        val splitList = customSplit(num, result)
         val intList = stringToInt(splitList)
         numList.addAll(defineInt(intList))
     }
 
     val result1 = sum(numList)
-    print(getResult(result1))
+    getResult(result1)
 
 }
 
@@ -85,7 +85,6 @@ fun getCustomSign(input: String): String? {
     }
     return matchResult?.groupValues?.get(1) // "//"와 "\n" 사이의 문자열 그대로 반환
 }
-
 
 
 fun sum(a: List<Int>): Int {
