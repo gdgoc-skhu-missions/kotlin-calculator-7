@@ -25,41 +25,20 @@ fun main() {
         numList.addAll(defineInt(intList))
 
     }
-    if(!result.isNullOrEmpty() ){
-        print(result)
-        var splitList = customSplit(num, result)
+
+    if(result!!.isNotBlank()){
+        print(result) // result = d
+        var splitList = customSplit(num, result) // 여기서 오류가 나네
         var intList = stringToInt(splitList)
         numList.addAll(defineInt(intList))
     }
 
     val result1 = sum(numList)
    print(getResult(result1))
-//    var isCustom = identifySign(num)
-//    // 만약 커스텀문자가 있으면
-//    if (isCustom) {
-//        val sign = extractSign(num)
-//        print(num.slice(5..<num.length))
-//        var splitList = customSplit(num.slice(5..num.length), sign)
-//        var intList = stringToInt(splitList)
-//
-//        numList.addAll(defineInt(intList))
-//
-//    } else {
-//        var splitList = basicSplit(num)
-//        var intList = stringToInt(splitList)
-//        numList.addAll(defineInt(intList))
-//    }
-//    val result = sum(numList)
 
 }
 
 
-//// 커스텀 구분자가 있는지 확인하는 함수-> startwith 이용하기 ( contains 사용)
-//fun identifySign(a: String): Boolean {
-//    val regexslash = Regex("^//()$")
-//   if(regexslash.containsMatchIn(a))
-//    return false
-//}
 
 // 기본 구분자를 나누는 함수
 fun basicSplit(a: String): List<String> {
@@ -68,7 +47,8 @@ fun basicSplit(a: String): List<String> {
 
 // 커스텀 구분자를 나누는 함수
 fun customSplit(a: String, sign: String): List<String> {
-    val b = a.slice(5..a.length)
+    val b = a.slice(5..a.length-1)
+    print("\n$b")
     return b.split(sign)
 }
 
