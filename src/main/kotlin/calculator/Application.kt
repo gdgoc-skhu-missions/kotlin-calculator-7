@@ -5,20 +5,18 @@ const val ZERO: Int = 0
 fun main() {
     print("덧셈할 문자열을 입력해 주세요.")
     var num = readLine()!!
-    print("=========")
-    print("string : $num")
 
-// 0 일때 처리
+
     if (num.isBlank()) {
         getResult(ZERO)
         return
     }
 
 
-// 숫자 리스트 변수 선언
     var numList = mutableListOf<Int>()
-    // 커스텀 된 숫자 (커스텀 문자가 들어있는지 확인하기 위한 변수 선언)
-    var result = getCustomSign(num)
+
+    val result = getCustomSign(num)
+
     if (result.isNullOrBlank()) {
         val splitList = basicSplit(num)
         var intList = stringToInt(splitList)
@@ -26,18 +24,21 @@ fun main() {
 
     }
 
-    if(result!!.isNotBlank()){
+    if (result!!.isNotBlank()) {
+        if (!num.contains("\\n")) {
+            incorrectSign()
+        }
+
         print(result) // result = d
-        var splitList = customSplit(num, result) // 여기서 오류가 나네
-        var intList = stringToInt(splitList)
+        val splitList = customSplit(num, result) // 여기서 오류가 나네
+        val intList = stringToInt(splitList)
         numList.addAll(defineInt(intList))
     }
 
     val result1 = sum(numList)
-   print(getResult(result1))
+    print(getResult(result1))
 
 }
-
 
 
 // 기본 구분자를 나누는 함수
@@ -47,11 +48,13 @@ fun basicSplit(a: String): List<String> {
 
 // 커스텀 구분자를 나누는 함수
 fun customSplit(a: String, sign: String): List<String> {
-    val b = a.slice(5..a.length-1)
+    if (!a.contains(sign)) {
+        incorrectSign()
+    }
+    val b = a.slice(5..a.length - 1)
     print("\n$b")
     return b.split(sign)
 }
-
 
 
 // 스트링을 숫자로 바꿔주는 함수
@@ -77,12 +80,14 @@ fun defineInt(a: List<Int>): List<Int> {
 fun getCustomSign(input: String): String? {
     val regex = Regex("^//(.+)\\\\n")
     val matchResult = regex.find(input)
-
+    if (matchResult == null) {
+        undefineSign()
+    }
     return matchResult?.groupValues?.get(1) // "//"와 "\n" 사이의 문자열 그대로 반환
 }
 
 
-// 더하는 함수
+
 fun sum(a: List<Int>): Int {
     var result = 0
     for (i in a) {
@@ -91,7 +96,7 @@ fun sum(a: List<Int>): Int {
     return result
 }
 
-// 결과값 출력하는 함수
+
 fun getResult(
     result: Int
 ) {
@@ -99,7 +104,7 @@ fun getResult(
 
 }
 
-// 예외처리 부분
+
 fun inputNotPositive() {
     throw IllegalArgumentException("입력값이 양수가 아닙니다. ")
 }
