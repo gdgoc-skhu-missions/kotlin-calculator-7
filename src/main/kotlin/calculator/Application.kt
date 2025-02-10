@@ -26,7 +26,6 @@ fun main() {
         if (!inputNumber.contains("\\n")) {
             incorrectSign()
         }
-        print(customSignResult) // result = d
         val splitList = customSplit(inputNumber, customSignResult)
         val intList = stringToInt(splitList)
         numberList.addAll(defineInt(intList))
@@ -45,7 +44,6 @@ fun customSplit(input: String, sign: String): List<String> {
         incorrectSign()
     }
     val b = input.substringAfter("\\n")
-    print("\n 숫자부분 : $b\n")
     return b.split(sign)
 }
 
