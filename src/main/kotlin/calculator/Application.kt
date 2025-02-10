@@ -51,8 +51,8 @@ fun customSplit(a: String, sign: String): List<String> {
     if (!a.contains(sign)) {
         incorrectSign()
     }
-    val b = a.slice(5..a.length - 1)
-    print("\n$b")
+    val b = a.substringAfter("\\n")
+    print("\n 숫자부분 : $b\n")
     return b.split(sign)
 }
 
