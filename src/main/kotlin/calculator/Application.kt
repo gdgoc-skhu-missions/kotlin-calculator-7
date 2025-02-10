@@ -19,7 +19,21 @@ fun main() {
     var numList = mutableListOf<Int>()
     // 커스텀 된 숫자 (커스텀 문자가 들어있는지 확인하기 위한 변수 선언)
     var result = getCustomSign(num)
-    print("\n예? $result")
+    if (result.isNullOrBlank()) {
+        val splitList = basicSplit(num)
+        var intList = stringToInt(splitList)
+        numList.addAll(defineInt(intList))
+
+    }
+    if(!result.isNullOrEmpty() ){
+        print(result)
+        var splitList = customSplit(num, result)
+        var intList = stringToInt(splitList)
+        numList.addAll(defineInt(intList))
+    }
+
+    val result1 = sum(numList)
+   print(getResult(result1))
 //    var isCustom = identifySign(num)
 //    // 만약 커스텀문자가 있으면
 //    if (isCustom) {
@@ -53,23 +67,12 @@ fun basicSplit(a: String): List<String> {
 }
 
 // 커스텀 구분자를 나누는 함수
-fun customSplit(a: String, sign: Char): List<String> {
+fun customSplit(a: String, sign: String): List<String> {
     val b = a.slice(5..a.length)
     return b.split(sign)
 }
 
-// 추출하는 함수
-fun extractSign(a: String): Char {
-    // 이게 뭐지 ?
-    if (a.slice(3..5).equals("\n")) {
-        undefineSign()
-    }
-    val sign = a.slice(2..3).first()
-    if (sign.equals(' ')) {
-        undefineSign()
-    }
-    return sign
-}
+
 
 // 스트링을 숫자로 바꿔주는 함수
 fun stringToInt(a: List<String>): List<Int> {
